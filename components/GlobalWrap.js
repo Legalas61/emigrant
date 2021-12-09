@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Header from './Header/header'
+import Head from "next/head";
+import Header from "./Header/header";
 
-export default function GlobalWrap({children}) {
+export default function GlobalWrap({ children }) {
   return (
     <div className="container">
       <Head>
@@ -16,8 +16,7 @@ export default function GlobalWrap({children}) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
+          Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
         </a>
       </footer>
 
@@ -26,13 +25,13 @@ export default function GlobalWrap({children}) {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
         }
 
         main {
-          flex: 1;
           display: flex;
+          flex-wrap: wrap;
           width: 100%;
         }
 
@@ -65,7 +64,6 @@ export default function GlobalWrap({children}) {
         }
 
         @media (max-width: 600px) {
-
         }
       `}</style>
 
@@ -84,5 +82,5 @@ export default function GlobalWrap({children}) {
         }
       `}</style>
     </div>
-  )
+  );
 }
