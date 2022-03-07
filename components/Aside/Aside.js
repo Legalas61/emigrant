@@ -1,20 +1,28 @@
-// import { D_GREY } from "../global";
+import {
+  HOME_ICON,
+  JOB_ICON,
+  BUSINESS_ICON,
+  COUPON_ICON,
+  TRACTOR_ICON,
+  PLANET_ICON,
+  PASS_ICON,
+} from "../global";
 import svg from "../../public/aside.svg";
 
-export default function Header() {
+export default function Aside() {
   return (
-    <header>
-      <menu type="context">
-        <li>Работа</li>
-        <li>Жилье</li>
-        <li>Услуги</li>
-        <li>Афиша</li>
-        <li>Иммиграция</li>
-        <li>Визы</li>
-        <li>Гражданство</li>
+    <aside>
+      <menu>
+        <li className="job">Работа</li>
+        <li className="home">Жилье</li>
+        <li className="business">Услуги</li>
+        <li className="coupon">Афиша</li>
+        <li className="tractor">Иммиграция</li>
+        <li className="planet">Визы</li>
+        <li className="pass">Гражданство</li>
       </menu>
       <style jsx>{`
-        header {
+        aside {
           background-image: url(${svg.src});
           background-repeat: no-repeat;
           background-size: cover;
@@ -29,8 +37,42 @@ export default function Header() {
         }
         li {
           cursor: pointer;
+          position: relative;
+          list-style: none;
+        }
+        li:before {
+          content: "";
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          top: 0;
+          left: -20px;
+          opacity: 0.6;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        .job:before {
+          background-image: url(${JOB_ICON});
+        }
+        .home:before {
+          background-image: url(${HOME_ICON});
+        }
+        .business:before {
+          background-image: url(${BUSINESS_ICON});
+        }
+        .coupon:before {
+          background-image: url(${COUPON_ICON});
+        }
+        .tractor:before {
+          background-image: url(${TRACTOR_ICON});
+        }
+        .planet:before {
+          background-image: url(${PLANET_ICON});
+        }
+        .pass:before {
+          background-image: url(${PASS_ICON});
         }
       `}</style>
-    </header>
+    </aside>
   );
 }
