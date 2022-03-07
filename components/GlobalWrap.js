@@ -1,5 +1,7 @@
 import Head from "next/head";
-import Header from "./Header/header";
+import Header from "./Aside/Aside";
+
+import { BLACK } from "../components/global";
 
 export default function GlobalWrap({ children }) {
   return (
@@ -10,7 +12,7 @@ export default function GlobalWrap({ children }) {
       <Header />
       <main>{children}</main>
 
-      <footer>
+      {/*  <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -18,13 +20,15 @@ export default function GlobalWrap({ children }) {
         >
           Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
         </a>
-      </footer>
+      </footer> */}
 
       <style jsx>{`
+        * {
+          color: ${BLACK};
+        }
         .container {
           min-height: 100vh;
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
           align-items: center;
         }
