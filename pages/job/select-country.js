@@ -1,6 +1,6 @@
 import Head from "next/head";
-import GlobalWrap from "../components/GlobalWrap";
-import { BLACK } from "../components/global";
+import GlobalWrap from "../../components/GlobalWrap";
+import { BLACK } from "../../components/global";
 
 const SelectCountry = () => (
   <GlobalWrap>

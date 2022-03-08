@@ -1,25 +1,25 @@
 import {
   GREY,
-  JOB_ICON,
-  HOME_ICON,
-  BUSINESS_ICON,
-  COUPON_ICON,
+  JOB_ICON_BLACK,
+  HOME_ICON_BLACK,
+  COUPON_ICON_BLACK,
+  BUSINESS_ICON_BLACK,
 } from "../global";
 
 const Card = ({ title, text }) => {
   let icon = undefined;
   switch (title) {
     case "Работа":
-      icon = JOB_ICON;
+      icon = JOB_ICON_BLACK;
       break;
     case "Жилье":
-      icon = HOME_ICON;
+      icon = HOME_ICON_BLACK;
       break;
     case "Услуги":
-      icon = BUSINESS_ICON;
+      icon = BUSINESS_ICON_BLACK;
       break;
     case "Афиша":
-      icon = COUPON_ICON;
+      icon = COUPON_ICON_BLACK;
       break;
   }
   return (

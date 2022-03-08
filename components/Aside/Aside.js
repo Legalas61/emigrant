@@ -1,35 +1,66 @@
 import {
-  HOME_ICON,
-  JOB_ICON,
-  BUSINESS_ICON,
-  COUPON_ICON,
-  TRACTOR_ICON,
-  PLANET_ICON,
-  PASS_ICON,
+  HOME_ICON_BLUE,
+  JOB_ICON_BLUE,
+  BUSINESS_ICON_BLUE,
+  COUPON_ICON_BLUE,
+  TRACTOR_ICON_BLUE,
+  PLANET_ICON_BLUE,
+  PASS_ICON_BLUE,
+  BLUE,
 } from "../global";
+import Link from "next/link";
 import svg from "../../public/aside.svg";
 
 export default function Aside() {
   return (
     <aside>
       <menu>
-        <li className="job">Работа</li>
-        <li className="home">Жилье</li>
-        <li className="business">Услуги</li>
-        <li className="coupon">Афиша</li>
-        <li className="tractor">Иммиграция</li>
-        <li className="planet">Визы</li>
-        <li className="pass">Гражданство</li>
+        <Link href="/job/select-country">
+          <li className="job">
+            <a>Работа</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="home">
+            <a>Жилье</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="business">
+            <a>Услуги</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="coupon">
+            <a>Афиша</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="tractor">
+            <a>Иммиграция</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="planet">
+            <a>Визы</a>
+          </li>
+        </Link>
+        <Link href="/job/">
+          <li className="pass">
+            <a>Гражданство</a>
+          </li>
+        </Link>
       </menu>
       <style jsx>{`
         aside {
           background-image: url(${svg.src});
           background-repeat: no-repeat;
           background-size: cover;
-          background-position: right;
-          width: 360px;
+          background-position: top right;
+          width: 560px;
           min-width: 250px;
           height: 100vh;
+          min-height: 750px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -37,40 +68,57 @@ export default function Aside() {
         }
         li {
           cursor: pointer;
-          position: relative;
           list-style: none;
+          height: 32px;
+          background-repeat: no-repeat;
+          background-size: 32px;
+          background-position: 15px center;
+          background-color: #fff;
+          padding: 30px;
+          margin-bottom: 10px;
+          border-radius: 10px;
+          width: max-content;
         }
         li:before {
-          content: "";
-          position: absolute;
-          width: 16px;
-          height: 16px;
-          top: 0;
-          left: -20px;
-          opacity: 0.6;
-          background-repeat: no-repeat;
-          background-size: cover;
+          left: 35px;
+          top: 5px;
+          text-transform: uppercase;
+          font-size: 24px;
         }
-        .job:before {
-          background-image: url(${JOB_ICON});
+        li a {
+          width: 0;
+          display: block;
+          color: ${BLUE};
+          overflow: hidden;
         }
-        .home:before {
-          background-image: url(${HOME_ICON});
+        li:hover {
+          box-shadow: 0px 5px 10px 2px rgba(71, 55, 140, 0.2);
         }
-        .business:before {
-          background-image: url(${BUSINESS_ICON});
+        li:hover a {
+          margin-left: 30px;
+          margin-top: -7px;
+          width: max-content;
         }
-        .coupon:before {
-          background-image: url(${COUPON_ICON});
+        .job {
+          background-image: url(${JOB_ICON_BLUE});
         }
-        .tractor:before {
-          background-image: url(${TRACTOR_ICON});
+        .home {
+          background-image: url(${HOME_ICON_BLUE});
         }
-        .planet:before {
-          background-image: url(${PLANET_ICON});
+        .business {
+          background-image: url(${BUSINESS_ICON_BLUE});
         }
-        .pass:before {
-          background-image: url(${PASS_ICON});
+        .coupon {
+          background-image: url(${COUPON_ICON_BLUE});
+        }
+        .tractor {
+          background-image: url(${TRACTOR_ICON_BLUE});
+        }
+        .planet {
+          background-image: url(${PLANET_ICON_BLUE});
+        }
+        .pass {
+          background-image: url(${PASS_ICON_BLUE});
         }
       `}</style>
     </aside>

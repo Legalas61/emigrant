@@ -1,7 +1,7 @@
 import Head from "next/head";
 import GlobalWrap from "../components/GlobalWrap";
 import Card from "../components/MainPage/Card";
-import { BLACK } from "../components/global";
+import { BLUE } from "../components/global";
 
 const Home = () => (
   <GlobalWrap>
@@ -41,7 +41,7 @@ const Home = () => (
         font-size: 25px;
         font-weight: bold;
         color: WHITE;
-        background-color: ${BLACK};
+        background-color: ${BLUE};
         width: max-content;
         padding: 15px 5px;
         align-self: left;
