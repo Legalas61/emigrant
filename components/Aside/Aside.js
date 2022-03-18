@@ -1,4 +1,5 @@
 import {
+  JOB_URL,
   HOME_ICON_BLUE,
   JOB_ICON_BLUE,
   BUSINESS_ICON_BLUE,
@@ -7,15 +8,33 @@ import {
   PLANET_ICON_BLUE,
   PASS_ICON_BLUE,
   BLUE,
+  RUS_FLAG,
 } from "../global";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import svg from "../../public/aside.svg";
 
 export default function Aside() {
+  const router = useRouter();
+  let weightAside = "50px";
+
+  if (router.pathname === "/") {
+    weightAside = "360px";
+  }
+
   return (
     <aside>
+      <Link href="/">
+        {/* TODO:сделать анимацию */}
+        <img
+          src={`${RUS_FLAG}`}
+          className="logo"
+          alt="на главную"
+          title="на главную"
+        />
+      </Link>
       <menu>
-        <Link href="/job/select-country">
+        <Link href={JOB_URL}>
           <li className="job">
             <a>Работа</a>
           </li>
@@ -57,14 +76,22 @@ export default function Aside() {
           background-repeat: no-repeat;
           background-size: cover;
           background-position: top right;
-          width: 560px;
-          min-width: 250px;
+          width: ${weightAside};
           height: 100vh;
           min-height: 750px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding: 0 10px;
+          position: fixed;
+          top: 0;
+        }
+        aside:hover {
+          width: 360px;
+        }
+        aside,
+        li a {
+          overflow: hidden;
         }
         li {
           cursor: pointer;
@@ -89,7 +116,6 @@ export default function Aside() {
           width: 0;
           display: block;
           color: ${BLUE};
-          overflow: hidden;
         }
         li:hover {
           box-shadow: 0px 5px 10px 2px rgba(71, 55, 140, 0.2);
@@ -119,6 +145,13 @@ export default function Aside() {
         }
         .pass {
           background-image: url(${PASS_ICON_BLUE});
+        }
+        .logo {
+          height: 50px;
+          position: fixed;
+          top: 50px;
+          left: 15px;
+          cursor: pointer;
         }
       `}</style>
     </aside>

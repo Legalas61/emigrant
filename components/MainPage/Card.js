@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   GREY,
   JOB_ICON_BLACK,
@@ -6,7 +7,7 @@ import {
   BUSINESS_ICON_BLACK,
 } from "../global";
 
-const Card = ({ title, text }) => {
+const Card = ({ title, text, url }) => {
   let icon = undefined;
   switch (title) {
     case "Работа":
@@ -24,12 +25,15 @@ const Card = ({ title, text }) => {
   }
   return (
     <>
-      <div className="box">
-        <h2 className="title">{title}</h2>
-        <div className="grid">
-          <span>{text}</span>
+      <Link href={`${url}`}>
+        <div className="box">
+          <h2 className="title">{title}</h2>
+          <div className="grid">
+            <span>{text}</span>
+          </div>
         </div>
-      </div>
+      </Link>
+
       <style jsx>{`
         h2 {
           font-size: 18px;
@@ -60,6 +64,9 @@ const Card = ({ title, text }) => {
           background: url(${icon}) no-repeat;
           transform: rotate(-30deg) scale(3.8);
           opacity: 0.3;
+        }
+        .box:hover:before {
+          transform: rotate(0deg) scale(3.8);
         }
         .grid {
           display: grid;

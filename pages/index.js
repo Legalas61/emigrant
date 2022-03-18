@@ -1,7 +1,7 @@
 import Head from "next/head";
 import GlobalWrap from "../components/GlobalWrap";
 import Card from "../components/MainPage/Card";
-import { BLUE } from "../components/global";
+import { BLUE, JOB_URL } from "../components/global";
 
 const Home = () => (
   <GlobalWrap>
@@ -18,6 +18,7 @@ const Home = () => (
         <Card
           title="Работа"
           text="Вакансии от работодателей и резюме соискателей."
+          url={JOB_URL}
         />
         <Card
           title="Жилье"

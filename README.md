@@ -1,1 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# Express API for Balalaika
+
+`/api/jobs/popular `- получить 6 стан с наибольшим количеством работы. В порядке убывания.
