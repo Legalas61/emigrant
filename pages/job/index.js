@@ -5,7 +5,7 @@ import GlobalWrap from "../../components/GlobalWrap";
 import AddNewAdsBtn from "../../components/Job/AddAdsBtn";
 import SelectCard from "../../components/Job/CardSelectCountry";
 const FormAddNewAds = dynamic(() =>
-  import("../../components/Job/FormAddNewAds")
+  import("../../components/Job/Form/Form.AddNewAds")
 );
 
 const JSON_OnSever = [
@@ -49,10 +49,6 @@ const SelectCountry = () => {
         <p>В процессе разработки</p>
       </section>
       <section>
-        <h3>Карибский бассейн</h3>
-        <p>В процессе разработки</p>
-      </section>
-      <section>
         <h3>Европа</h3>
         <div className="list">
           <SelectCard nameCountry={"Германии"} url={"job/germane"} />
@@ -66,7 +62,7 @@ const SelectCountry = () => {
         <p>В процессе разработки</p>
       </section>
       <section>
-        <h3>Северная Америка</h3>
+        <h3>Северная Америка и Карибский бассейн</h3>
         <p>В процессе разработки</p>
       </section>
       <section>

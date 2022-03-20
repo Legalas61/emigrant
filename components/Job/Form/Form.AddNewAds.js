@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { BLUE, SERVER_URL, CATEGORY } from "../global";
+import { BLUE, SERVER_URL, CATEGORY } from "../../global";
 import SelectLocation from "./Form.SelectLocation";
 
 const FormAddNewAds = ({ status, action }) => {
@@ -97,7 +97,9 @@ const FormAddNewAds = ({ status, action }) => {
             setIsCategoryError(undefined);
             setErrorText(undefined);
           }}
-          className={`transparent ${isCategoryError ? "error" : undefined}`}
+          className={`
+            ${category === "" ? "transparent" : undefined}
+            ${isCategoryError ? "error" : undefined}`}
         >
           <option value="" hidden>
             Категория
@@ -116,7 +118,7 @@ const FormAddNewAds = ({ status, action }) => {
           name="description"
           cols="30"
           rows="10"
-          placeholder="Описание"
+          placeholder="Описание объявления"
           value={description}
           required
           className={isDescriptionError ? "error" : undefined}
@@ -152,6 +154,7 @@ const FormAddNewAds = ({ status, action }) => {
         .form {
           display: flex;
           flex-direction: column;
+          max-width: 450px;
         }
         .form {
           box-shadow: 0px 0px 15px 5px rgba(154, 154, 165, 0.14);
@@ -159,12 +162,9 @@ const FormAddNewAds = ({ status, action }) => {
           padding: 10px 20px 25px 20px;
           color: ${BLUE};
           border-radius: 10px;
-          width: 320px;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          height: max-content;
-          width: max-content;
           background-color: #fff;
         }
         .close {
@@ -206,6 +206,11 @@ const FormAddNewAds = ({ status, action }) => {
           color: ${BLUE};
           min-height: 30px;
           min-width: 320px;
+        }
+        textarea {
+          resize: vertical;
+          width: 100%;
+          max-width: 410px;
         }
         .transparent {
           opacity: 0.6;

@@ -4,42 +4,52 @@ import {
   ASIA_MAP,
   AUSTRALIA_MAP,
   BLUE,
-  CARIBBEAN_MAP,
   EUROPA_MAP,
   L_AMERICA_MAP,
   N_AMERICA_MAP,
 } from "../global";
 
-const BtnSelectMap = ({ title, status, action, setError }) => {
+const BtnSelectMap = ({
+  title,
+  status,
+  action,
+  setError,
+  printListCountry,
+}) => {
   let map = undefined;
+  let codeContinent = undefined;
 
   switch (title) {
     case "Азия":
       map = ASIA_MAP;
+      codeContinent = "AS";
       break;
     case "Австралия и Океания":
       map = AUSTRALIA_MAP;
-      break;
-    case "Карибский бассейн":
-      map = CARIBBEAN_MAP;
+      codeContinent = "AU";
       break;
     case "Европа":
+      codeContinent = "EU";
       map = EUROPA_MAP;
       break;
     case "Африка":
+      codeContinent = "AF";
       map = AFRICA_MAP;
       break;
-    case "Северная Америка":
+    case "Северная Америка и Карибский бассейн":
       map = N_AMERICA_MAP;
+      codeContinent = "NA";
       break;
     case "Латинская Америка":
       map = L_AMERICA_MAP;
+      codeContinent = "LA";
       break;
   }
 
   const selected = () => {
     action(title);
     setError(false);
+    printListCountry(codeContinent);
   };
   return (
     <figure onClick={() => selected()}>

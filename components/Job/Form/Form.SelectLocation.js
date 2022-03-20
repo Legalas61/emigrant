@@ -1,33 +1,37 @@
 import { useState } from "react";
 import axios from "axios";
-import { CONTINENTS, BLUE, SERVER_URL, L_GREY } from "../global";
-import BtnSelectMap from "./BtnSelectMap";
+import { CONTINENTS, BLUE, SERVER_URL, L_GREY } from "../../global";
+import BtnSelectMap from "../BtnSelectMap";
 
 const SelectLocation = ({ status, action, isError, setError }) => {
   const [location, setLocation] = useState();
-  const [nameSelectedCountry, setNameSelectedCountry] = useState();
   const [countryTab, setCountryTab] = useState();
+  const [listCountyFromServer, setListCountyFromServer] = useState();
 
-  // Получаю и проверяю значение из инпута
-  // Получение названий стран по символам с указанного континента
-  const getListCountry = (inputValue) => {
-    if (typeof inputValue === "string" && inputValue.trim().length > 1) {
-      setNameSelectedCountry(inputValue);
-      // Поиск кода континента
-      const selectContinent = CONTINENTS.find((e) => e.name === location);
+  // Получаю список стран по указанному коду из кнопки
+  const getListCountry = (code) => {
+    axios
+      .get(`${SERVER_URL}/api/continents/${code}`)
+      .then((res) => {
+        setCountryTab(res.data);
+        setListCountyFromServer(res.data);
+      })
+      .catch();
+  };
 
-      axios
-        .post(`${SERVER_URL}/api/continents/${selectContinent.code}`, {
-          country: nameSelectedCountry,
-        })
-        .then((res) => {
-          if (res.data) {
-            setCountryTab(res.data);
-          }
-        })
-        .catch(function (error) {
-          console.log("error => ", error);
-        });
+  // Получаю значение из инпута и делаю перебор из списка.
+  const sortCountry = (inp) => {
+    if (typeof inp === "string" && inp.trim().length !== 0) {
+      const name = inp[0].toUpperCase() + inp.slice(1);
+      const listCounty = [];
+      countryTab.map((e) => {
+        if (e.search(name) !== -1) {
+          listCounty.push(e);
+        }
+      });
+      return setCountryTab(listCounty);
+    } else {
+      return setCountryTab(listCountyFromServer);
     }
   };
 
@@ -36,26 +40,36 @@ const SelectLocation = ({ status, action, isError, setError }) => {
   const TabsCountry = ({ countryTab }) => {
     return (
       <div className="tabs">
-        {countryTab.map((e) => (
-          <div
-            className="tab"
-            onClick={() => {
-              action(e.name);
-              setError(false);
-            }}
-          >
-            {e.name}
-          </div>
-        ))}
+        <div className="wrap">
+          {countryTab.map((e) => (
+            <div
+              className="tab"
+              onClick={() => {
+                action(e);
+                setError(false);
+              }}
+            >
+              {e}
+            </div>
+          ))}
+        </div>
         <style jsx>{`
           .tabs {
+            max-height: 100px;
+            overflow: auto;
+          }
+          .wrap {
             display: flex;
+            flex-wrap: wrap;
+            height: max-content;
           }
           .tabs .tab {
             background-color: ${L_GREY};
             margin-right: 10px;
+            margin-bottom: 10px;
             border-radius: 10px;
             padding: 10px;
+            font-size: 12px;
             cursor: pointer;
           }
         `}</style>
@@ -65,7 +79,7 @@ const SelectLocation = ({ status, action, isError, setError }) => {
 
   return (
     <div className={isError ? "location error" : "location"}>
-      <span className="title">Выберите локацию:</span>
+      <span className="title">Локация для размещения объявления:</span>
       <ul className="select-location">
         {CONTINENTS.map((continent) => (
           <li>
@@ -74,6 +88,7 @@ const SelectLocation = ({ status, action, isError, setError }) => {
               status={location}
               action={setLocation}
               setError={setError}
+              printListCountry={getListCountry}
             />
           </li>
         ))}
@@ -86,10 +101,10 @@ const SelectLocation = ({ status, action, isError, setError }) => {
                 <>
                   <input
                     type={"text"}
-                    placeholder={`Выберите страну в ${continent.in}`}
+                    placeholder={`Введите название страны из ${continent.in}`}
                     value={status}
                     onChange={(e) => {
-                      getListCountry(e.target.value);
+                      sortCountry(e.target.value);
                       action(e.target.value);
                       setError(false);
                     }}
@@ -118,8 +133,8 @@ const SelectLocation = ({ status, action, isError, setError }) => {
         }
         .select-location {
           list-style: none;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
+          display: flex;
+          flex-wrap: wrap;
           padding: 0;
           margin-bottom: 0;
         }

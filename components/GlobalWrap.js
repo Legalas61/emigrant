@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Aside from "./Aside/Aside";
+import { BLUE, L_GREY } from "../components/global";
 
 export default function GlobalWrap({ children }) {
   return (
@@ -43,6 +44,8 @@ export default function GlobalWrap({ children }) {
         * {
           box-sizing: border-box;
           transition: width ease-in-out 0.15s;
+          scrollbar-color: ${BLUE} ${L_GREY};
+          scrollbar-width: thin;
         }
       `}</style>
     </div>
