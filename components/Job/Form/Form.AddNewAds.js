@@ -7,6 +7,7 @@ const FormAddNewAds = ({ status, action }) => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
+  const [continent, setContinent] = useState();
   const [description, setDescription] = useState("");
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
@@ -48,6 +49,7 @@ const FormAddNewAds = ({ status, action }) => {
         title,
         category,
         location,
+        continent,
         description,
       })
       .then((e) => {
@@ -62,7 +64,10 @@ const FormAddNewAds = ({ status, action }) => {
           }, 2000);
         }
       })
-      .catch();
+      .catch((err) => {
+        console.log(err);
+        setErrorText("Ошибка на сервере");
+      });
   };
 
   return (
@@ -101,11 +106,15 @@ const FormAddNewAds = ({ status, action }) => {
             ${category === "" ? "transparent" : undefined}
             ${isCategoryError ? "error" : undefined}`}
         >
-          <option value="" hidden>
+          <option value="" hidden key={0}>
             Категория
           </option>
           {CATEGORY.map((e) => {
-            return <option value={e}>{e}</option>;
+            return (
+              <option value={e} key={e}>
+                {e}
+              </option>
+            );
           })}
         </select>
         <SelectLocation
@@ -113,6 +122,7 @@ const FormAddNewAds = ({ status, action }) => {
           action={setLocation}
           isError={isLocationError}
           setError={setIsLocationError}
+          setStatusContinent={setContinent}
         />
         <textarea
           name="description"
@@ -132,7 +142,8 @@ const FormAddNewAds = ({ status, action }) => {
         {isTitleError ||
         isCategoryError ||
         isLocationError ||
-        isDescriptionError ? (
+        isDescriptionError ||
+        errorText ? (
           <span className="errorText">{errorText}</span>
         ) : undefined}
 

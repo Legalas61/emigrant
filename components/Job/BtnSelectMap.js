@@ -15,6 +15,7 @@ const BtnSelectMap = ({
   action,
   setError,
   printListCountry,
+  setStatusContinent,
 }) => {
   let map = undefined;
   let codeContinent = undefined;
@@ -50,11 +51,14 @@ const BtnSelectMap = ({
     action(title);
     setError(false);
     printListCountry(codeContinent);
+    setStatusContinent(codeContinent);
   };
+
   return (
     <figure onClick={() => selected()}>
       <img src={`${map}`} alt={`Выбрать для размещения в ${title}`} />
       <figcaption>{title}</figcaption>
+
       <style jsx>{`
         figure {
           border-radius: 10px;

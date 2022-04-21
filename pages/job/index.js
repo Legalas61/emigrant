@@ -4,20 +4,10 @@ import { useState } from "react";
 import GlobalWrap from "../../components/GlobalWrap";
 import AddNewAdsBtn from "../../components/Job/AddAdsBtn";
 import SelectCard from "../../components/Job/CardSelectCountry";
+import ListCountry from "../../components/Job/ListCountry";
 const FormAddNewAds = dynamic(() =>
   import("../../components/Job/Form/Form.AddNewAds")
 );
-
-const JSON_OnSever = [
-  { ISO: "DE", name: "Германия", in: "Германии" },
-  { ISO: "ES", name: "Испания", in: "Испании" },
-  { ISO: "PL", name: "Польша", in: "Польше" },
-  { ISO: "CZ", name: "Чехия", in: "Чехии" },
-  { ISO: "CA", name: "Канада", in: "Канаде" },
-  { ISO: "US", name: "США", in: "США" },
-];
-
-const JSON = ["DE", "ES", "PL", "CZ", "CA", "US"];
 
 const SelectCountry = () => {
   const [showForm, setShowForm] = useState(false);
@@ -30,44 +20,31 @@ const SelectCountry = () => {
 
       <section>
         <h2>Популярное</h2>
-        <div className="list">
-          {JSON.map((i) =>
-            JSON_OnSever.map((j) =>
-              i === j.ISO ? (
-                <SelectCard nameCountry={j.in} url={`job/${j.ISO}`} />
-              ) : null
-            )
-          )}
-        </div>
+        {<ListCountry label={"tp"} />}
       </section>
       <section>
         <h3>Австралия и Океания</h3>
-        <p>В процессе разработки</p>
+        {<ListCountry label={"AU"} />}
       </section>
       <section>
         <h3>Азия</h3>
-        <p>В процессе разработки</p>
+        {<ListCountry label={"AS"} />}
       </section>
       <section>
         <h3>Европа</h3>
-        <div className="list">
-          <SelectCard nameCountry={"Германии"} url={"job/germane"} />
-          <SelectCard nameCountry={"Испании"} />
-          <SelectCard nameCountry={"Польше"} />
-          <SelectCard nameCountry={"Чехии"} />
-        </div>
+        {<ListCountry label={"EU"} />}
       </section>
       <section>
         <h3>Африка</h3>
-        <p>В процессе разработки</p>
+        {<ListCountry label={"AF"} />}
       </section>
       <section>
         <h3>Северная Америка и Карибский бассейн</h3>
-        <p>В процессе разработки</p>
+        {<ListCountry label={"NA"} />}
       </section>
       <section>
         <h3>Латинская Америка</h3>
-        <p>В процессе разработки</p>
+        {<ListCountry label={"LA"} />}
       </section>
       <AddNewAdsBtn
         title={"Добавить объявление"}
@@ -83,10 +60,6 @@ const SelectCountry = () => {
           display: flex;
           flex-direction: column;
           width: 100%;
-        }
-        .list {
-          display: flex;
-          flex-wrap: wrap;
         }
       `}</style>
     </GlobalWrap>

@@ -3,7 +3,13 @@ import axios from "axios";
 import { CONTINENTS, BLUE, SERVER_URL, L_GREY } from "../../global";
 import BtnSelectMap from "../BtnSelectMap";
 
-const SelectLocation = ({ status, action, isError, setError }) => {
+const SelectLocation = ({
+  status,
+  action,
+  isError,
+  setError,
+  setStatusContinent,
+}) => {
   const [location, setLocation] = useState();
   const [countryTab, setCountryTab] = useState();
   const [listCountyFromServer, setListCountyFromServer] = useState();
@@ -16,7 +22,10 @@ const SelectLocation = ({ status, action, isError, setError }) => {
         setCountryTab(res.data);
         setListCountyFromServer(res.data);
       })
-      .catch();
+      .catch((e) => {
+        console.log(e);
+        setError("Не ответа с сервера ");
+      });
   };
 
   // Получаю значение из инпута и делаю перебор из списка.
@@ -25,7 +34,7 @@ const SelectLocation = ({ status, action, isError, setError }) => {
       const name = inp[0].toUpperCase() + inp.slice(1);
       const listCounty = [];
       countryTab.map((e) => {
-        if (e.search(name) !== -1) {
+        if (e.toUpperCase().search(name.toUpperCase()) !== -1) {
           listCounty.push(e);
         }
       });
@@ -40,25 +49,30 @@ const SelectLocation = ({ status, action, isError, setError }) => {
   const TabsCountry = ({ countryTab }) => {
     return (
       <div className="tabs">
-        <div className="wrap">
+        <ul className="wrap">
           {countryTab.map((e) => (
-            <div
+            <li
               className="tab"
+              key={e}
               onClick={() => {
                 action(e);
                 setError(false);
               }}
             >
               {e}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
+
         <style jsx>{`
           .tabs {
             max-height: 100px;
             overflow: auto;
           }
           .wrap {
+            margin: 0;
+            padding: 0;
+            list-style: none;
             display: flex;
             flex-wrap: wrap;
             height: max-content;
@@ -82,13 +96,14 @@ const SelectLocation = ({ status, action, isError, setError }) => {
       <span className="title">Локация для размещения объявления:</span>
       <ul className="select-location">
         {CONTINENTS.map((continent) => (
-          <li>
+          <li key={continent.code}>
             <BtnSelectMap
               title={continent.name}
               status={location}
               action={setLocation}
               setError={setError}
               printListCountry={getListCountry}
+              setStatusContinent={setStatusContinent}
             />
           </li>
         ))}
