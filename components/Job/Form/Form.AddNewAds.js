@@ -53,7 +53,7 @@ const FormAddNewAds = ({ status, action }) => {
         description,
       })
       .then((e) => {
-        if (e.status === 200) {
+        if (e.status === 201) {
           setSuccessText("Ваше объявление скоро появиться на сайте");
           setTitle("");
           setCategory("");

@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { BLUE, COUNTRY } from "../global";
 
 const searchInName = (name) => {
@@ -10,16 +9,20 @@ const searchInName = (name) => {
   }
 };
 
-export default function SelectCard({ nameCountry, url, card }) {
-  if (url === undefined) {
-    url = "/";
-  }
+export default function SelectCard({ nameCountry, url = "/", card = [] }) {
   let body = null;
   if (nameCountry) {
     if (nameCountry === "Далее") {
       body = <h4>Просмотреть больше работ</h4>;
     } else {
-      body = <h4>Работа {searchInName(nameCountry)}</h4>;
+      body = (
+        <>
+          <h4>Работа {searchInName(nameCountry)}</h4>
+          <span>
+            {card.length !== 0 ? "количество вакансий:" + card.count : null}
+          </span>
+        </>
+      );
     }
   } else {
     body = (
@@ -48,6 +51,7 @@ export default function SelectCard({ nameCountry, url, card }) {
             font-size: 10px;
             padding: 5px;
             white-space: nowrap;
+            color: ${BLUE};
           }
           .description {
             font-size: 12px;
@@ -77,6 +81,7 @@ export default function SelectCard({ nameCountry, url, card }) {
             cursor: pointer;
             min-width: 250px;
             max-width: 450px;
+            flex-grow: 1;
             text-align: center;
             padding: 15px 10px;
             margin: 0 10px 10px 0;
@@ -87,9 +92,6 @@ export default function SelectCard({ nameCountry, url, card }) {
           .box:hover {
             color: #fff;
             background: ${BLUE};
-          }
-          .box:hover .category {
-            background: red;
           }
 
           @media screen and (max-width: 995px) {

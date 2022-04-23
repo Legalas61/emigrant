@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import GlobalWrap from "../../components/GlobalWrap";
 import AddNewAdsBtn from "../../components/Job/AddAdsBtn";
-import SelectCard from "../../components/Job/CardSelectCountry";
+import BestCountry from "../../components/Job/listCountryPage/Best";
 import ListCountry from "../../components/Job/ListCountry";
 const FormAddNewAds = dynamic(() =>
   import("../../components/Job/Form/Form.AddNewAds")
@@ -20,31 +20,31 @@ const SelectCountry = () => {
 
       <section>
         <h2>Популярное</h2>
-        {<ListCountry label={"tp"} />}
+        {<BestCountry />}
       </section>
       <section>
         <h3>Австралия и Океания</h3>
-        {<ListCountry label={"AU"} />}
+        {<ListCountry key={"AU"} label={"AU"} />}
       </section>
       <section>
         <h3>Азия</h3>
-        {<ListCountry label={"AS"} />}
+        {<ListCountry key={"AS"} label={"AS"} />}
       </section>
       <section>
         <h3>Европа</h3>
-        {<ListCountry label={"EU"} />}
+        {<ListCountry key={"EU"} label={"EU"} />}
       </section>
       <section>
         <h3>Африка</h3>
-        {<ListCountry label={"AF"} />}
+        {<ListCountry key={"AF"} label={"AF"} />}
       </section>
       <section>
         <h3>Северная Америка и Карибский бассейн</h3>
-        {<ListCountry label={"NA"} />}
+        {<ListCountry key={"NA"} label={"NA"} />}
       </section>
       <section>
         <h3>Латинская Америка</h3>
-        {<ListCountry label={"LA"} />}
+        {<ListCountry key={"LA"} label={"LA"} />}
       </section>
       <AddNewAdsBtn
         title={"Добавить объявление"}
