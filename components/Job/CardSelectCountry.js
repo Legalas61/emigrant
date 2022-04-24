@@ -19,7 +19,7 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
         <>
           <h4>Работа {searchInName(nameCountry)}</h4>
           <span>
-            {card.length !== 0 ? "количество вакансий:" + card.count : null}
+            {card.length !== 0 ? "количество вакансий: " + card.count : null}
           </span>
         </>
       );

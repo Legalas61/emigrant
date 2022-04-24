@@ -1,20 +1,6 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-import { JOB_URL, SERVER_URL } from "../global";
 import SelectCard from "./CardSelectCountry";
 
-const ListCountry = ({ label }) => {
-  const [listCountry, setListCountry] = useState([]);
-  const apiUrl = `${SERVER_URL}/api/${JOB_URL}/get-jobs/name-count/${label}`;
-
-  useEffect(() => {
-    axios
-      .get(apiUrl)
-      .then((resp) => setListCountry(resp.data.message))
-      .catch(() => setListCountry([]));
-  }, []);
-
+const ListCountry = ({ listCountry }) => {
   if (!listCountry || listCountry.length === 0)
     return <p>В процессе наполнения</p>; //TODO:Сделать карточку при клике на которую открывается форма с выбранным континентом
   return (
@@ -22,9 +8,10 @@ const ListCountry = ({ label }) => {
       {listCountry.length >= 6
         ? listCountry
             .slice(0, 5)
-            .map((county, i) => (
+            .sort((a, b) => (a.count < b.count ? 1 : -1))
+            .map((county) => (
               <SelectCard
-                key={i}
+                key={county.id}
                 nameCountry={county.location}
                 url={`job/${county.id}`}
                 card={county}
@@ -34,12 +21,12 @@ const ListCountry = ({ label }) => {
               <SelectCard
                 key={"next"}
                 nameCountry={"Далее"}
-                url={`job/${label}`}
+                url={`job/${listCountry.continent}`}
               />
             )
-        : listCountry.map((county, i) => (
+        : listCountry.map((county) => (
             <SelectCard
-              key={i}
+              key={county.id}
               nameCountry={county.location}
               url={`job/${label}`}
               card={county}

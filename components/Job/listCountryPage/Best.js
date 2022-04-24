@@ -15,21 +15,24 @@ const BestCountry = () => {
   }, []);
 
   return (
-    <div className="list">
-      {listCountry.map((county) => (
-        <SelectCard
-          key={county.name}
-          nameCountry={county.name}
-          url={`job/${county.id}`}
-        />
-      ))}
-      <style jsx>{`
-        .list {
-          display: flex;
-          flex-wrap: wrap;
-        }
-      `}</style>
-    </div>
+    <>
+      <h2>Популярное</h2>
+      <div className="list">
+        {listCountry.map((county) => (
+          <SelectCard
+            key={county.name}
+            nameCountry={county.name}
+            url={`job/${county.id}`}
+          />
+        ))}
+        <style jsx>{`
+          .list {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        `}</style>
+      </div>
+    </>
   );
 };
 
