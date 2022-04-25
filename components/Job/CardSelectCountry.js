@@ -16,12 +16,25 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
       body = <h4>Просмотреть больше работ</h4>;
     } else {
       body = (
-        <>
+        <div>
           <h4>Работа {searchInName(nameCountry)}</h4>
           <span>
             {card.length !== 0 ? "количество вакансий: " + card.count : null}
           </span>
-        </>
+          <style jsx>{`
+            div {
+              display: flex;
+              flex-direction: column;
+              text-align: left;
+            }
+            h4 {
+              font-size: 14px;
+            }
+            span {
+              font-size: 10px;
+            }
+          `}</style>
+        </div>
       );
     }
   } else {
@@ -37,35 +50,6 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
             <span className="category">{card.category}</span>
           </div>
         </div>
-
-        <style jsx>{`
-          * {
-            margin: 0;
-          }
-          h4 {
-            font-size: 18px;
-          }
-          .category {
-            border-radius: 10px;
-            background-color: #f7f7f7;
-            font-size: 10px;
-            padding: 5px;
-            white-space: nowrap;
-            color: ${BLUE};
-          }
-          .description {
-            font-size: 12px;
-            margin: 5px 0;
-            display: block;
-            text-align: left;
-          }
-          .location {
-            font-size: 12px;
-            width: 50px;
-            display: block;
-            text-align: center;
-          }
-        `}</style>
       </>
     );
   }
@@ -92,6 +76,9 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
           .box:hover {
             color: #fff;
             background: ${BLUE};
+          }
+          .box span {
+            background: red;
           }
 
           @media screen and (max-width: 995px) {

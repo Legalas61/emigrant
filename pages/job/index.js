@@ -6,7 +6,11 @@ import GlobalWrap from "../../components/GlobalWrap";
 import AddNewAdsBtn from "../../components/Job/AddAdsBtn";
 import BestCountry from "../../components/Job/listCountryPage/Best";
 import ListCountry from "../../components/Job/ListCountry";
-import { JOB_URL, SERVER_URL } from "../../components/global";
+import {
+  JOB_URL,
+  SERVER_URL,
+  getFullNameContinentById,
+} from "../../components/global";
 
 const FormAddNewAds = dynamic(() =>
   import("../../components/Job/Form/Form.AddNewAds")
@@ -35,12 +39,18 @@ const SelectCountry = () => {
       <section>{<BestCountry />}</section>
       {listJobInCountry
         .sort((a, b) => (a.length < b.length ? 1 : -1))
-        .map((country) => (
-          <section>
-            <h2>{country[0] ? country[0].continent : null}</h2>
-            <ListCountry key={country} listCountry={country} />
-          </section>
-        ))}
+        .map((country) =>
+          country.length !== 0 ? (
+            <section>
+              <h2>
+                {country[0]
+                  ? getFullNameContinentById(country[0].continent)
+                  : null}
+              </h2>
+              <ListCountry listCountry={country} />
+            </section>
+          ) : null
+        )}
       <AddNewAdsBtn
         title={"Добавить объявление"}
         status={showForm}

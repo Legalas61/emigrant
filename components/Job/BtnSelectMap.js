@@ -41,7 +41,7 @@ const BtnSelectMap = ({
       map = N_AMERICA_MAP;
       codeContinent = "NA";
       break;
-    case "Латинская Америка":
+    case "Южная Америка":
       map = L_AMERICA_MAP;
       codeContinent = "LA";
       break;
