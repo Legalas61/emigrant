@@ -4,7 +4,47 @@ export const D_GREY = "#E5F8FF";
 export const L_GREY = "#f7f7f7";
 
 export const JOB_URL = "job";
+export const transliterate = (word) => {
+  word = word.toLowerCase();
 
+  word = word
+    .replace(/ /g, "_")
+    .replace(/а/g, "a")
+    .replace(/б/g, "b")
+    .replace(/в/g, "v")
+    .replace(/г/g, "g")
+    .replace(/д/g, "d")
+    .replace(/е/g, "e")
+    .replace(/ё/g, "yo")
+    .replace(/ж/g, "zh")
+    .replace(/з/g, "z")
+    .replace(/и/g, "i")
+    .replace(/й/g, "j")
+    .replace(/к/g, "k")
+    .replace(/л/g, "l")
+    .replace(/м/g, "m")
+    .replace(/н/g, "n")
+    .replace(/о/g, "o")
+    .replace(/п/g, "p")
+    .replace(/р/g, "r")
+    .replace(/с/g, "s")
+    .replace(/т/g, "t")
+    .replace(/у/g, "u")
+    .replace(/ф/g, "f")
+    .replace(/x/g, "х")
+    .replace(/ц/g, "c")
+    .replace(/ч/g, "ch")
+    .replace(/ш/g, "sh")
+    .replace(/щ/g, "shh")
+    .replace(/ъ/g, '"')
+    .replace(/ы/g, "y")
+    .replace(/ь/g, "'")
+    .replace(/э/g, "e'")
+    .replace(/ю/g, "yu")
+    .replace(/я/g, "ya");
+
+  return word;
+};
 export const SERVER_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8080"

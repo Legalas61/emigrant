@@ -1,3 +1,4 @@
+import { transliterate } from "../global";
 import SelectCard from "./CardSelectCountry";
 
 const ListCountry = ({ listCountry }) => {
@@ -5,6 +6,7 @@ const ListCountry = ({ listCountry }) => {
     return <p>В процессе наполнения</p>; //TODO:Сделать карточку при клике на которую открывается форма с выбранным континентом
   return (
     <div className="list">
+      {/* list job by */}
       {listCountry.length >= 6
         ? listCountry
             .slice(0, 5)
@@ -13,7 +15,7 @@ const ListCountry = ({ listCountry }) => {
               <SelectCard
                 key={county.id}
                 nameCountry={county.location}
-                url={`job/${county.id}`}
+                url={`job/${transliterate(county.location)}`}
                 card={county}
               />
             ))
@@ -21,14 +23,14 @@ const ListCountry = ({ listCountry }) => {
               <SelectCard
                 key={"next"}
                 nameCountry={"Далее"}
-                url={`job/${listCountry.continent}`}
+                url={`job/${listCountry[0].continent}`}
               />
             )
         : listCountry.map((county) => (
             <SelectCard
               key={county.id}
               nameCountry={county.location}
-              url={`job/${label}`}
+              url={`job/${cyrillicToTranslit().transform(label)}`}
               card={county}
             />
           ))}

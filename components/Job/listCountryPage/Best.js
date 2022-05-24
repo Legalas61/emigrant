@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { JOB_URL, SERVER_URL } from "../../global";
+
+import { JOB_URL, SERVER_URL, transliterate } from "../../global";
 import SelectCard from "../CardSelectCountry";
 
 const BestCountry = () => {
@@ -22,7 +23,7 @@ const BestCountry = () => {
           <SelectCard
             key={county.name}
             nameCountry={county.name}
-            url={`job/${county.id}`}
+            url={`job/${transliterate(county.name)}`}
           />
         ))}
         <style jsx>{`

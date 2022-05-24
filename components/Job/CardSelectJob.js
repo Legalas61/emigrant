@@ -13,10 +13,16 @@ export default function SelectJobCard({
     <Link href={url}>
       <div className="card">
         <h3>{title}</h3>
-        <span>{category}</span>
-        <span>{location}</span>
-        <p>{description}</p>
-        <Link href={`job/${url}`}>Подробнее</Link>
+        <span>
+          <b>Категория:</b> {category}
+        </span>
+        <span>
+          <b>Локация:</b> {location}
+        </span>
+        <p>
+          <b>Описание:</b> {description}
+        </p>
+        <Link href={`${url}`}>Подробнее</Link>
 
         <style jsx>{`
           .card {
@@ -31,6 +37,7 @@ export default function SelectJobCard({
             min-width: 400px;
             padding: 30px;
             margin: 0 10px 10px 0;
+            font-size: 14px;
           }
           .card:hover {
             color: #fff;

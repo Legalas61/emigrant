@@ -34,7 +34,7 @@ export default function Aside() {
         />
       </Link>
       <menu>
-        <Link href={JOB_URL}>
+        <Link href={"/" + JOB_URL}>
           <li className="job">
             <a>Работа</a>
           </li>
