@@ -93,7 +93,7 @@ const SelectLocation = ({
 
   return (
     <div className={isError ? "location error" : "location"}>
-      <span className="title">Локация для размещения объявления:</span>
+      <span className="title">Страна для размещения объявления:</span>
       <ul className="select-location">
         {CONTINENTS.map((continent) => (
           <li key={continent.code}>

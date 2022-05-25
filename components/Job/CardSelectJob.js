@@ -22,7 +22,9 @@ export default function SelectJobCard({
         <p>
           <b>Описание:</b> {description}
         </p>
-        <Link href={`${url}`}>Подробнее</Link>
+        <Link href={`${url}`}>
+          <a className="link">Подробнее</a>
+        </Link>
 
         <style jsx>{`
           .card {
@@ -42,6 +44,10 @@ export default function SelectJobCard({
           .card:hover {
             color: #fff;
             background: ${BLUE};
+          }
+          .card:hover a,
+          a:hover {
+            color: #fff;
           }
         `}</style>
       </div>

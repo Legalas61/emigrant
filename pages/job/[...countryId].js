@@ -58,9 +58,9 @@ export default function SelectCard() {
         <section>
           <SelectJobCard
             title={`${job.title}`}
-            category={`${job.title}`}
-            location={`${job.title}`}
-            description={`${job.title}`}
+            category={`${job.category}`}
+            location={`${job.location}`}
+            description={`${job.description}`}
             url={"view-job/" + String(job.id)}
             key={job.id}
           />
@@ -69,8 +69,9 @@ export default function SelectCard() {
 
       <style jsx>{`
         h1 {
-          color: ${BLUE};
-          font-size: 18px;
+          color: #000;
+          margin: 20px 0;
+          font-size: 24px;
         }
       `}</style>
     </GlobalWrap>

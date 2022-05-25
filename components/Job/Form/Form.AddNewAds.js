@@ -217,6 +217,7 @@ const FormAddNewAds = ({ status, action }) => {
           color: ${BLUE};
           min-height: 30px;
           min-width: 320px;
+          max-height: 300px;
         }
         textarea {
           resize: vertical;
