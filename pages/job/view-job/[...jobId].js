@@ -18,7 +18,9 @@ const FullTextJob = () => {
       setTitle(data.title);
       setDescription(data.description);
       setCategory(data.category);
-      setLocation(data.location);
+      setLocation(
+        data.address ? `${data.location}, ${data.address}` : data.location
+      );
       setDateCreate(data.dateCreate);
     });
   }, []);

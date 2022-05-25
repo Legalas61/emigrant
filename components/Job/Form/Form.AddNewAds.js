@@ -7,6 +7,7 @@ const FormAddNewAds = ({ status, action }) => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
   const [continent, setContinent] = useState();
   const [description, setDescription] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -49,6 +50,7 @@ const FormAddNewAds = ({ status, action }) => {
         title,
         category,
         location,
+        address,
         continent,
         description,
       })
@@ -58,6 +60,7 @@ const FormAddNewAds = ({ status, action }) => {
           setTitle("");
           setCategory("");
           setLocation("");
+          setAddress("");
           setDescription("");
           setTimeout(() => {
             setSuccessText("");
@@ -120,6 +123,8 @@ const FormAddNewAds = ({ status, action }) => {
         <SelectLocation
           status={location}
           action={setLocation}
+          address={address}
+          setAddress={setAddress}
           isError={isLocationError}
           setError={setIsLocationError}
           setStatusContinent={setContinent}

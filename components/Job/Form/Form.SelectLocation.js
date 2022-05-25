@@ -9,6 +9,8 @@ const SelectLocation = ({
   isError,
   setError,
   setStatusContinent,
+  address,
+  setAddress,
 }) => {
   const [location, setLocation] = useState();
   const [countryTab, setCountryTab] = useState();
@@ -118,6 +120,7 @@ const SelectLocation = ({
                     type={"text"}
                     placeholder={`Введите название страны из ${continent.in}`}
                     value={status}
+                    maxLength="300"
                     onChange={(e) => {
                       sortCountry(e.target.value);
                       action(e.target.value);
@@ -129,6 +132,16 @@ const SelectLocation = ({
                   ) : (
                     ""
                   )}
+                  {status ? (
+                    <input
+                      className="address"
+                      type="text"
+                      placeholder="Введите адрес"
+                      title="Штат, город, улица и т.д."
+                      onChange={(e) => setAddress(e.target.value)}
+                      maxLength="300"
+                    />
+                  ) : null}
                 </>
               );
             }
@@ -165,6 +178,10 @@ const SelectLocation = ({
         }
         .error {
           border-color: red;
+        }
+        .address {
+          margin-left: -3px;
+          margin-top: -2px;
         }
       `}</style>
     </div>
