@@ -5,6 +5,7 @@ import {
   HOME_ICON_BLACK,
   COUPON_ICON_BLACK,
   BUSINESS_ICON_BLACK,
+  SHADOW,
 } from "../global";
 
 const Card = ({ title, text, url }) => {
@@ -47,7 +48,7 @@ const Card = ({ title, text, url }) => {
           max-width: 300px;
           padding: 10px;
           margin: 10px 0;
-          box-shadow: 0px 0px 15px 5px rgba(154, 154, 165, 0.14);
+          box-shadow: ${SHADOW};
           border-radius: 10px;
           cursor: pointer;
           position: relative;

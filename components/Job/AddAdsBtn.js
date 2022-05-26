@@ -1,4 +1,4 @@
-import { BLUE } from "../global";
+import { BLUE, SHADOW } from "../global";
 
 const AddNewAdsBtn = ({ title, status, action }) => {
   return (
@@ -12,7 +12,7 @@ const AddNewAdsBtn = ({ title, status, action }) => {
           padding: 10px;
           cursor: pointer;
           color: ${BLUE};
-          box-shadow: 0px 0px 15px 5px rgba(154, 154, 165, 0.14);
+          box-shadow: ${SHADOW};
           border-radius: 10px;
           top: 90vh;
           left: calc(90vw - 100px);
