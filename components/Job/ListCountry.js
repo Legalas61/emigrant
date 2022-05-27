@@ -30,7 +30,7 @@ const ListCountry = ({ listCountry }) => {
             <SelectCard
               key={county.id}
               nameCountry={county.location}
-              url={`job/${cyrillicToTranslit().transform(label)}`}
+              url={`job/${transliterate(county.location)}`}
               card={county}
             />
           ))}

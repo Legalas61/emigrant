@@ -75,6 +75,19 @@ const FormAddNewAds = ({ status, action }) => {
         address,
         continent,
         description,
+        name,
+        phone,
+        email,
+        facebook,
+        website,
+        sumPay,
+        typePay,
+        noLang,
+        noExp,
+        cash,
+        home,
+        fullTime,
+        partTime,
       })
       .then((e) => {
         if (e.status === 201) {
@@ -84,6 +97,20 @@ const FormAddNewAds = ({ status, action }) => {
           setLocation("");
           setAddress("");
           setDescription("");
+          setName("");
+          setPhone("");
+          setEmail("");
+          setFacebook("");
+          setEmail("");
+          setWebsite("");
+          setSumPay(1);
+          setTypePay("");
+          setNoLang(false);
+          setNoExp(false);
+          setCash(false);
+          setHome(false);
+          setFullTime(false);
+          setPartTime(false);
           setTimeout(() => {
             setSuccessText("");
           }, 2000);
@@ -235,7 +262,7 @@ const FormAddNewAds = ({ status, action }) => {
               />
             </label>
             <label>
-              <span>Без опыта</span>{" "}
+              <span>Без опыта</span>
               <input
                 type="checkbox"
                 name="noLang"
@@ -244,7 +271,7 @@ const FormAddNewAds = ({ status, action }) => {
               />
             </label>
             <label>
-              Работа на кэш{" "}
+              Работа на кэш
               <input
                 type="checkbox"
                 name="isCash"
@@ -253,7 +280,7 @@ const FormAddNewAds = ({ status, action }) => {
               />
             </label>
             <label>
-              С проживанием{" "}
+              С проживанием
               <input
                 type="checkbox"
                 name="isHome"
@@ -263,7 +290,7 @@ const FormAddNewAds = ({ status, action }) => {
             </label>
             <span className="hr">Тип занятости:</span>
             <label>
-              Full-time{" "}
+              Full-time
               <input
                 type="checkbox"
                 name="isHome"
@@ -272,7 +299,7 @@ const FormAddNewAds = ({ status, action }) => {
               />
             </label>
             <label>
-              Part-time{" "}
+              Part-time
               <input
                 type="checkbox"
                 name="isHome"
@@ -294,13 +321,14 @@ const FormAddNewAds = ({ status, action }) => {
           <span className="eye"></span>
           Дополнительные данные
         </div>
+
         {successText ? (
           <span className="success">{successText}</span>
-        ) : undefined}
-
-        <button className="submit" onClick={submitForm}>
-          Отправить
-        </button>
+        ) : (
+          <button className="submit" onClick={submitForm}>
+            Отправить
+          </button>
+        )}
       </form>
 
       <style jsx>{`
@@ -318,6 +346,7 @@ const FormAddNewAds = ({ status, action }) => {
           overflow: auto;
           max-height: 568px;
           padding-right: 10px;
+          padding: 3px;
         }
         .form {
           box-shadow: ${SHADOW};
@@ -406,7 +435,6 @@ const FormAddNewAds = ({ status, action }) => {
         }
         textarea {
           resize: vertical;
-          margin-left: 3px;
           min-height: 185px;
           max-height: 320px;
           max-width: 410px;

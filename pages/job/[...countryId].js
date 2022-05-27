@@ -52,19 +52,20 @@ export default function SelectCard() {
       <Head>
         <title>Балалайка - Список работы в {locationName}</title>
       </Head>
-      <h1>{locationName} - список работы </h1>
 
+      <h1>{locationName} - список работы </h1>
       {listJob.map((job) => (
-        <section>
-          <SelectJobCard
-            title={`${job.title}`}
-            category={`${job.category}`}
-            location={`${job.location}`}
-            description={`${job.description}`}
-            url={"view-job/" + String(job.id)}
-            key={job.id}
-          />
-        </section>
+        <SelectJobCard
+          title={`${job.title}`}
+          category={`${job.category}`}
+          location={`${job.location}`}
+          dateCreate={`${job.dateCreate}`}
+          author={`${job.author}`}
+          fullTime={job.fullTime}
+          partTime={job.partTime}
+          url={"view-job/" + String(job.id)}
+          key={job.id}
+        />
       ))}
 
       <style jsx>{`
