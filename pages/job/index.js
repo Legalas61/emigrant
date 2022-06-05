@@ -39,15 +39,15 @@ const SelectCountry = () => {
       <section>{<BestCountry />}</section>
       {listJobInCountry
         .sort((a, b) => (a.length < b.length ? 1 : -1))
-        .map((country) =>
+        .map((country, index) =>
           country.length !== 0 ? (
-            <section>
+            <section key={index}>
               <h2>
                 {country[0]
                   ? getFullNameContinentById(country[0].continent)
                   : null}
               </h2>
-              <ListCountry listCountry={country} />
+              <ListCountry listCountry={country} key={country[0].continent} />
             </section>
           ) : null
         )}

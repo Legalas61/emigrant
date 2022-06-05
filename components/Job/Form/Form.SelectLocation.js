@@ -132,7 +132,7 @@ const SelectLocation = ({
                   ) : (
                     ""
                   )}
-                  {status ? (
+                  {status && countryTab.length !== 0 ? (
                     <input
                       className="address"
                       type="text"

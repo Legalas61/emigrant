@@ -9,6 +9,7 @@ import {
   CLOSE_EYE,
 } from "../../global";
 import SelectLocation from "./Form.SelectLocation";
+import TextEditor from "./TextEditor";
 
 const FormAddNewAds = ({ status, action }) => {
   const [title, setTitle] = useState("");
@@ -26,7 +27,7 @@ const FormAddNewAds = ({ status, action }) => {
   const [facebook, setFacebook] = useState("");
   const [website, setWebsite] = useState("");
   const [sumPay, setSumPay] = useState(1);
-  const [typePay, setTypePay] = useState("");
+  const [typePay, setTypePay] = useState("h");
   const [noLang, setNoLang] = useState(false);
   const [noExp, setNoExp] = useState(false);
   const [cash, setCash] = useState(false);
@@ -38,13 +39,13 @@ const FormAddNewAds = ({ status, action }) => {
   const [isTitleError, setIsTitleError] = useState(false);
   const [isCategoryError, setIsCategoryError] = useState(false);
   const [isLocationError, setIsLocationError] = useState(false);
-  const [isDescriptionError, setIsDescriptionError] = useState(false);
+  const [isDescriptionError, setIsDescriptionError] = useState(null);
 
   const submitForm = (e) => {
     e.preventDefault();
     setOpenMoreDate(false);
     if (title.trim().length === 0) {
-      setErrorText("Введите название объявления");
+      setErrorText("Введите заголовок объявления");
       return setIsTitleError(true);
     } else {
       setErrorText(undefined);
@@ -61,9 +62,9 @@ const FormAddNewAds = ({ status, action }) => {
     } else {
       setErrorText(undefined);
     }
-    if (description.trim().length === 0) {
+    if (description.trim().length < 7) {
       setErrorText("Введите описание объявления");
-      return setIsDescriptionError(true);
+      return setIsDescriptionError(false);
     } else {
       setErrorText(undefined);
     }
@@ -184,20 +185,13 @@ const FormAddNewAds = ({ status, action }) => {
             setError={setIsLocationError}
             setStatusContinent={setContinent}
           />
-          <textarea
-            name="description"
-            cols="30"
-            rows="10"
-            placeholder="Описание объявления"
-            value={description}
-            required
-            className={isDescriptionError ? "error" : undefined}
-            onChange={(e) => {
-              setDescription(e.target.value);
-              setIsDescriptionError(undefined);
-              setErrorText(undefined);
-            }}
-          ></textarea>
+          <TextEditor
+            description={description}
+            setDescription={setDescription}
+            setIsDescriptionError={setIsDescriptionError}
+            setErrorText={setErrorText}
+            isDescriptionError={isDescriptionError}
+          />
         </div>
 
         {openMoreDate ? (

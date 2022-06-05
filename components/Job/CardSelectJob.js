@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Moment from "react-moment";
+import "moment/locale/ru";
 
 import { BLUE, LOCATION_ICON, MORE_ICON } from "../global";
 
@@ -28,27 +30,10 @@ export default function SelectJobCard({
       workTime = "";
       break;
   }
-  let currentDate = Date.parse(new Date());
-  let days = (currentDate - Date.parse(dateCreate)) / 86400000;
-  const dayGo = Math.round(days);
 
-  const declOfNum = (n, text_forms) => {
-    const n = Math.abs(n) % 100;
-    const n1 = n % 10;
-    if (n > 10 && n < 20) {
-      return text_forms[2];
-    }
-    if (n1 > 1 && n1 < 5) {
-      return text_forms[1];
-    }
-    if (n1 == 1) {
-      return text_forms[0];
-    }
-    return text_forms[2];
-  };
   return (
     <Link href={url}>
-      <div className="card">
+      <div className="card" key={dateCreate}>
         <div className="wrap">
           {/* TODO:add icon on category */}
           <span className="category">{category}</span>
@@ -61,9 +46,11 @@ export default function SelectJobCard({
         <div className="footer">
           <div className="column">
             <span className="dayAgo">
-              {dayGo} {declOfNum(dayGo, ["час", "часа", "часов"])} назад
+              <Moment locale="ru" fromNow>
+                {dateCreate}
+              </Moment>
             </span>
-            {author !== "null" ? (
+            {author !== "null" && author !== "undefined" ? (
               <span className="author">{author}</span>
             ) : null}
           </div>
@@ -85,6 +72,7 @@ export default function SelectJobCard({
             min-width: 400px;
             margin: 0 10px 10px 0;
             font-size: 12px;
+            justify-content: space-between;
           }
           .wrap {
             padding: 25px 30px;
@@ -126,6 +114,7 @@ export default function SelectJobCard({
             display: flex;
             padding: 20px 30px;
             justify-content: space-between;
+            max-height: 93px;
           }
           .dayAgo {
             color: #a9adbb;

@@ -16,7 +16,7 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
       body = <h4>Просмотреть больше работ</h4>;
     } else {
       body = (
-        <div>
+        <div key={card.location}>
           <h4>Работа {searchInName(nameCountry)}</h4>
           <span>
             {card.length !== 0 ? "количество вакансий: " + card.count : null}
@@ -40,7 +40,7 @@ export default function SelectCard({ nameCountry, url = "/", card = [] }) {
   } else {
     body = (
       <>
-        <div>
+        <div key={card.location}>
           <span className="location">{card.location}</span>
         </div>
         <div>

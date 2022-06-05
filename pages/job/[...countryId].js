@@ -54,25 +54,31 @@ export default function SelectCard() {
       </Head>
 
       <h1>{locationName} - список работы </h1>
-      {listJob.map((job) => (
-        <SelectJobCard
-          title={`${job.title}`}
-          category={`${job.category}`}
-          location={`${job.location}`}
-          dateCreate={`${job.dateCreate}`}
-          author={`${job.author}`}
-          fullTime={job.fullTime}
-          partTime={job.partTime}
-          url={"view-job/" + String(job.id)}
-          key={job.id}
-        />
-      ))}
+      <div className="wrap">
+        {listJob.map((job) => (
+          <SelectJobCard
+            title={`${job.title}`}
+            category={`${job.category}`}
+            location={`${job.location}`}
+            dateCreate={`${job.updatedAt ? job.updatedAt : job.dateCreate}`}
+            author={`${job.author ? job.author : job.name}`}
+            fullTime={job.fullTime}
+            partTime={job.partTime}
+            url={"view-job/" + String(job.id)}
+            key={job.id}
+          />
+        ))}
+      </div>
 
       <style jsx>{`
         h1 {
           color: #000;
           margin: 20px 0;
           font-size: 24px;
+        }
+        .wrap {
+          display: flex;
+          flex-wrap: wrap;
         }
       `}</style>
     </GlobalWrap>

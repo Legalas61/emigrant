@@ -13,7 +13,7 @@ const ListCountry = ({ listCountry }) => {
             .sort((a, b) => (a.count < b.count ? 1 : -1))
             .map((county) => (
               <SelectCard
-                key={county.id}
+                key={county.location}
                 nameCountry={county.location}
                 url={`job/${transliterate(county.location)}`}
                 card={county}
@@ -28,7 +28,7 @@ const ListCountry = ({ listCountry }) => {
             )
         : listCountry.map((county) => (
             <SelectCard
-              key={county.id}
+              key={county.location}
               nameCountry={county.location}
               url={`job/${transliterate(county.location)}`}
               card={county}

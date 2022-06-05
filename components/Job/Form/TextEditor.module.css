@@ -1,0 +1,22 @@
+.ProseMirror{
+  height: 150px;
+  padding: 5px;
+}
+.ProseMirror:focus-visible{
+  outline: none;
+}
+.ProseMirror:focus {
+  outline: none;
+}
+.russianEconomic:first-child::before {
+  color: #adb5bd;
+  font-size:12px;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror p {
+  margin: 0;
+}
